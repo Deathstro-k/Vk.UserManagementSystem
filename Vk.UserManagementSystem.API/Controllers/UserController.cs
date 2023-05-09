@@ -7,13 +7,13 @@ using Vk.UserManagementSystem.Application.Users.Queries;
 using Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
 using Vk.UserManagementSystem.API.Models;
 using Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
+using Vk.UserManagementSystem.Application.Users.Commands.BlockUser;
 
 namespace Vk.UserManagementSystem.API.Controllers;
 public class UserController : BaseController
 {
     
-    private readonly IMapper _mapper;
-    
+    private readonly IMapper _mapper;    
     public UserController(IMapper mapper) => _mapper = mapper;
     
     [HttpGet]
@@ -46,6 +46,14 @@ public class UserController : BaseController
     public async Task<IActionResult> Update([FromBody] UpdateUserDto updateUserDto)
     {
         var command = _mapper.Map<UpdateUserCommand>(updateUserDto);
+        await Mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Block(Guid id)
+    {
+        var command = new BlockUserCommand { Id = id };
         await Mediator.Send(command);
         return NoContent();
     }

@@ -12,7 +12,7 @@ using Vk.UserManagementSystem.Persistence;
 namespace Vk.UserManagementSystem.Persistence.Migrations
 {
     [DbContext(typeof(UserManagementSystemDbContext))]
-    [Migration("20230509201432_Initial")]
+    [Migration("20230509230123_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -76,12 +76,12 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("33bf8f3a-f961-4e9e-8fd5-befa239a394f"),
+                            Id = new Guid("5f5d7541-c7b4-4edb-9c1b-f9ea928339a7"),
                             Code = 200
                         },
                         new
                         {
-                            Id = new Guid("41fef8c4-75d3-48ab-8fd2-57d151ee3006"),
+                            Id = new Guid("af485255-76d7-4dfe-9e16-d57603110aae"),
                             Code = 100,
                             Description = "Only one"
                         });
@@ -106,12 +106,12 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("78b31513-bd2b-41f5-b3b6-69bc029976e8"),
+                            Id = new Guid("62f67733-7fa2-4c74-8ac9-b70211194437"),
                             Code = 300
                         },
                         new
                         {
-                            Id = new Guid("210ce758-c493-43b6-86b2-4ce2c28a62e0"),
+                            Id = new Guid("8ea20a85-a7fb-4462-86f0-31696f5f91d7"),
                             Code = 400,
                             Description = "Deleted account"
                         });
