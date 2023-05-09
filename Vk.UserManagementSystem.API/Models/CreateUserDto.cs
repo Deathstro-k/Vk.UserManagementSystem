@@ -2,9 +2,9 @@
 using Vk.UserManagementSystem.Application.Common.Mappings;
 using Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
 
-namespace Vk.UserManagementSystem.API;
+namespace Vk.UserManagementSystem.API.Models;
 
-public class CreateUserDto:IMapWith<CreateUserCommand>
+public class CreateUserDto : IMapWith<CreateUserCommand>
 {
     public string Login { get; set; }
     public string Password { get; set; }

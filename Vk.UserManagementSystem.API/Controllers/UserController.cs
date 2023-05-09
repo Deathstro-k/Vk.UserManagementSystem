@@ -5,6 +5,8 @@ using Vk.UserManagementSystem.Application.Users.Queries.GetUserDetails;
 using Vk.UserManagementSystem.Application.Users.ViewModels;
 using Vk.UserManagementSystem.Application.Users.Queries;
 using Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
+using Vk.UserManagementSystem.API.Models;
+using Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
 
 namespace Vk.UserManagementSystem.API.Controllers;
 public class UserController : BaseController
@@ -40,4 +42,11 @@ public class UserController : BaseController
         return Ok(userId);
     }
 
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] UpdateUserDto updateUserDto)
+    {
+        var command = _mapper.Map<UpdateUserCommand>(updateUserDto);
+        await Mediator.Send(command);
+        return NoContent();
+    }
 }

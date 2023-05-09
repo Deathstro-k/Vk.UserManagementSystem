@@ -8,10 +8,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
 {
     private readonly IUserManagementSystemDbContext _db;
 
-    public CreateUserCommandHandler(IUserManagementSystemDbContext db)
-    {
-        _db = db;
-    }      
+    public CreateUserCommandHandler(IUserManagementSystemDbContext db) => _db = db;
 
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {

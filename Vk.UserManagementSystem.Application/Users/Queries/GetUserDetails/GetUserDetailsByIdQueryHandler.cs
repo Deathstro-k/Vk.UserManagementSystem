@@ -21,18 +21,9 @@ public class GetUserDetailsByIdQueryHandler : IRequestHandler<GetUserDetailsById
 
     public async Task<UserDetailsViewModel> Handle(GetUserDetailsByIdQuery request,CancellationToken cancellationToken)
     {
-        var userDetails = await _db.Users.Include(u => u.UserGroup).Include(u => u.UserState).FirstOrDefaultAsync(u => u.Id == request.Id);
-            //.Join(_db.UserGroups,
-            //      user=>user.UserGroupId,
-            //      group=>group.Id,
-            //      (user,group)=> new { user, group }
-            //      )
-            // .Join(_db.UserStates,
-            //      table => table.user.UserStateId,
-            //      state => state.Id,
-            //      (state, table) => new User
-            //                        {}
-            //      ).FirstOrDefaultAsync(s => s.state.user.Id == request.Id,cancellationToken);
+        var userDetails = await _db.Users
+            .Include(group => group.UserGroup)
+            .Include(state => state.UserState).FirstOrDefaultAsync(user => user.Id == request.Id);  
 
         if (userDetails == null) throw new NotFoundException(nameof(User), request.Id);
         return _mapper.Map<UserDetailsViewModel>(userDetails);
