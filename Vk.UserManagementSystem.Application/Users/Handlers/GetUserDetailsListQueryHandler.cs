@@ -1,29 +1,32 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Vk.UserManagementSystem.Application.Interfaces;
 using Vk.UserManagementSystem.Application.Users.Queries;
 using Vk.UserManagementSystem.Application.Users.ViewModels;
-using Vk.UserManagementSystem.Domain.Entities;
 
 namespace Vk.UserManagementSystem.Application.Users.Handlers;
 
 public class GetUserDetailsListQueryHandler : IRequestHandler<GetUserDetailsListQuery, UserDetailsListViewModel>
 {
-    private readonly IRepository<User> _userRepository;
+    private readonly IUserManagementSystemDbContext _db;
     private readonly IMapper _mapper;
-    public GetUserDetailsListQueryHandler(IRepository<User> repository,
+    public GetUserDetailsListQueryHandler(IUserManagementSystemDbContext db,
         IMapper mapper)
     {
-        _userRepository = repository;
+        _db = db;
         _mapper = mapper;
     }
 
     public async Task<UserDetailsListViewModel> Handle(GetUserDetailsListQuery request,
         CancellationToken cancellationToken)
     {
-        var userDetailsList = await _userRepository.GetAllAsync();
-       
-        return _mapper.Map<UserDetailsListViewModel>(userDetailsList);
+        var userDetailsList = await _db.Users
+            .ProjectTo<UserDetailsViewModel>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return new UserDetailsListViewModel { UserDetailsList = userDetailsList };
     }
 }
 

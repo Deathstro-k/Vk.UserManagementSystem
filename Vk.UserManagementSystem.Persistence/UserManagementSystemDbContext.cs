@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Vk.UserManagementSystem.Application.Interfaces;
 using Vk.UserManagementSystem.Domain.Entities;
 using Vk.UserManagementSystem.Persistence.Configurations;
 
 namespace Vk.UserManagementSystem.Persistence;
-public class UserManagementSystemDbContext : DbContext
+public class UserManagementSystemDbContext : DbContext, IUserManagementSystemDbContext
 {
 	public UserManagementSystemDbContext(DbContextOptions<UserManagementSystemDbContext> options) : base(options) { }
 

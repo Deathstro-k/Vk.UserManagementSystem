@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Vk.UserManagementSystem.Domain\Vk.UserManagementSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\Commands\" />
-  </ItemGroup>
-
 </Project>
