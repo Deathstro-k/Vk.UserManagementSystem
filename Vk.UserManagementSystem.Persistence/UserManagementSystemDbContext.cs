@@ -3,9 +3,9 @@ using Vk.UserManagementSystem.Domain.Entities;
 using Vk.UserManagementSystem.Persistence.Configurations;
 
 namespace Vk.UserManagementSystem.Persistence;
-public class UserManagmentSystemDbContext : DbContext
+public class UserManagementSystemDbContext : DbContext
 {
-	public UserManagmentSystemDbContext(DbContextOptions<UserManagmentSystemDbContext> options) : base(options) { }
+	public UserManagementSystemDbContext(DbContextOptions<UserManagementSystemDbContext> options) : base(options) { }
 
 	public DbSet<User> Users { get; set; }
     public DbSet<UserState> UserStates { get; set; }

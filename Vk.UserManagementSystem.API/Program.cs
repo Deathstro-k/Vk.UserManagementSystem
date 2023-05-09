@@ -1,3 +1,5 @@
+using Vk.UserManagementSystem.Persistence;
+
 namespace Vk.UserManagementSystem.API
 {
     public class Program
@@ -12,6 +14,8 @@ namespace Vk.UserManagementSystem.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddPersistence(builder.Configuration);
 
             var app = builder.Build();
 

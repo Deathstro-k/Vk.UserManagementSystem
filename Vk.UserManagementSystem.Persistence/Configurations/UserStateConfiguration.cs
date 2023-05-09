@@ -7,6 +7,5 @@ public class UserStateConfiguration : IEntityTypeConfiguration<UserState>
 {
     public void Configure(EntityTypeBuilder<UserState> builder)
     {
-        
     }
 }
