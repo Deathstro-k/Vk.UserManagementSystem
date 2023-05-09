@@ -28,7 +28,7 @@ public class UserDetailsViewModel:IMapWith<User>
             .ForMember(uservm => uservm.Password,
                 options => options.MapFrom(user => user.Password))
             .ForMember(uservm => uservm.Created_date,
-                options => options.MapFrom(user => user.Created_date))
+                options => options.MapFrom(user => user.CreatedDate))
             .ForMember(uservm => uservm.UserGroupCode,
                 options => options.MapFrom(user => user.UserGroup.Code))
             .ForMember(uservm => uservm.UserGroupDescription,

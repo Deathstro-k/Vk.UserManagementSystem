@@ -10,7 +10,7 @@ public class UserManagementSystemDbContext : DbContext, IUserManagementSystemDbC
 
 	public DbSet<User> Users { get; set; }
     public DbSet<UserState> UserStates { get; set; }
-    public DbSet<UserGroup> UserGroup { get; set; }
+    public DbSet<UserGroup> UserGroups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -7,4 +7,6 @@ public class UserGroup
     public UserGroupCode Code { get; set; }
 
     public string? Description { get; set; }  
+
+    public ICollection<User> Users { get; set; }
 }

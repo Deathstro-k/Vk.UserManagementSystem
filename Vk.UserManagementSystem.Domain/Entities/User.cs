@@ -7,7 +7,7 @@ public class User
 
     public string Password { get; set; }    
 
-    public DateTime Created_date { get; set; }  
+    public DateTime CreatedDate { get; set; }  
 
     public Guid UserGroupId { get; set; }
 

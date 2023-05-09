@@ -12,7 +12,7 @@ using Vk.UserManagementSystem.Persistence;
 namespace Vk.UserManagementSystem.Persistence.Migrations
 {
     [DbContext(typeof(UserManagementSystemDbContext))]
-    [Migration("20230509173521_Initial")]
+    [Migration("20230509201432_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,7 +31,7 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("Created_date")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Login")
@@ -71,7 +71,20 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserGroup");
+                    b.ToTable("UserGroups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("33bf8f3a-f961-4e9e-8fd5-befa239a394f"),
+                            Code = 200
+                        },
+                        new
+                        {
+                            Id = new Guid("41fef8c4-75d3-48ab-8fd2-57d151ee3006"),
+                            Code = 100,
+                            Description = "Only one"
+                        });
                 });
 
             modelBuilder.Entity("Vk.UserManagementSystem.Domain.Entities.UserState", b =>
@@ -89,18 +102,31 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserStates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("78b31513-bd2b-41f5-b3b6-69bc029976e8"),
+                            Code = 300
+                        },
+                        new
+                        {
+                            Id = new Guid("210ce758-c493-43b6-86b2-4ce2c28a62e0"),
+                            Code = 400,
+                            Description = "Deleted account"
+                        });
                 });
 
             modelBuilder.Entity("Vk.UserManagementSystem.Domain.Entities.User", b =>
                 {
                     b.HasOne("Vk.UserManagementSystem.Domain.Entities.UserGroup", "UserGroup")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("UserGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Vk.UserManagementSystem.Domain.Entities.UserState", "UserState")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("UserStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -108,6 +134,16 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                     b.Navigation("UserGroup");
 
                     b.Navigation("UserState");
+                });
+
+            modelBuilder.Entity("Vk.UserManagementSystem.Domain.Entities.UserGroup", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Vk.UserManagementSystem.Domain.Entities.UserState", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,7 +20,9 @@ public class Program
             configuration.AddProfile(new AssemblyMappingProfile(typeof(IUserManagementSystemDbContext).Assembly));    
         });
         services.AddPersistence(builder.Configuration);
-        services.AddApplication();    
+        services.AddApplication();   
+        
+
         services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
