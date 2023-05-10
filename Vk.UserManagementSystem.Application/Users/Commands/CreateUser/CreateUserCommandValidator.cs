@@ -1,22 +1,18 @@
 ﻿using FluentValidation;
-using Vk.UserManagementSystem.Application.Interfaces;
 
 namespace Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
 
 public class CreateUserCommandValidator:AbstractValidator<CreateUserCommand>
 {
-    private readonly IUserManagementSystemDbContext _db;
-    public CreateUserCommandValidator(IUserManagementSystemDbContext db)
-	{
-		_db = db;	
-		
-		RuleFor(command => command.Login).Matches("^[a-zA-Z0-9]+$")
-			//.Must((db,login) => !_db.Users.Any(user=>user.Login==login))
-            .MinimumLength(4)
-            .MaximumLength(50); ;
+    
+    public CreateUserCommandValidator()
+	{		
+		RuleFor(command => command.Login).Matches("^[a-zA-Z0-9]+$")			
+                                         .MinimumLength(4)
+                                         .MaximumLength(50); ;
 
         RuleFor(command => command.Password).Matches("^[a-zA-Z0-9]+$")
-										 .MinimumLength(8)
-										 .MaximumLength(16);
+										    .MinimumLength(8)
+										    .MaximumLength(16);
     }
 }

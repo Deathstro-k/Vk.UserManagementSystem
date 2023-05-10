@@ -32,7 +32,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
         if (_cache.TryGetValue(user.Login, out _))
         {
             throw new CreateCommandTimeoutException(nameof(User),timeout);
-        }
+        }     
 
         _cache.Set(user.Login, "", new MemoryCacheEntryOptions().SetAbsoluteExpiration(timeout));
 

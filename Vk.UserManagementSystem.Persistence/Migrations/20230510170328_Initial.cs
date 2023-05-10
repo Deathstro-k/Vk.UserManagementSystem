@@ -72,8 +72,8 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                 columns: new[] { "Id", "Code", "Description" },
                 values: new object[,]
                 {
-                    { new Guid("5f5d7541-c7b4-4edb-9c1b-f9ea928339a7"), 200, null },
-                    { new Guid("af485255-76d7-4dfe-9e16-d57603110aae"), 100, "Only one" }
+                    { new Guid("a3a6cfd2-a1dd-4c83-ab3e-63350803ada5"), 100, "Only one" },
+                    { new Guid("b19a5252-fcc6-43f7-bbdc-59fcbbb30d15"), 200, null }
                 });
 
             migrationBuilder.InsertData(
@@ -81,8 +81,8 @@ namespace Vk.UserManagementSystem.Persistence.Migrations
                 columns: new[] { "Id", "Code", "Description" },
                 values: new object[,]
                 {
-                    { new Guid("62f67733-7fa2-4c74-8ac9-b70211194437"), 300, null },
-                    { new Guid("8ea20a85-a7fb-4462-86f0-31696f5f91d7"), 400, "Deleted account" }
+                    { new Guid("45633a3f-a7ac-4dae-acbe-5df3283a178f"), 400, "Deleted account" },
+                    { new Guid("6b5d34f2-d065-45c2-8faa-408dce2e2f01"), 300, null }
                 });
 
             migrationBuilder.CreateIndex(

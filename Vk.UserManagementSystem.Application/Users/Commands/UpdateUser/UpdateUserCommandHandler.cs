@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Vk.UserManagementSystem.Application.Common.Exceptions;
 using Vk.UserManagementSystem.Application.Interfaces;
+using Vk.UserManagementSystem.Domain.Codes;
 using Vk.UserManagementSystem.Domain.Entities;
 
 namespace Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
@@ -22,6 +23,12 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand,Unit>
         {
             throw new NotFoundException(nameof(User), request.Id);
         }
+
+        var adminsCount = _db.Users.Count(user => user.UserGroup.Code == UserGroupCode.Admin);
+        if (adminsCount > 0)
+        {
+            throw new AdminsCountException();
+        }    
 
         entity.Login = request.Login;
         entity.Password = request.Password;
