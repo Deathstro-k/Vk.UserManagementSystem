@@ -25,7 +25,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand,Unit>
         }
 
         var adminsCount = _db.Users.Count(user => user.UserGroup.Code == UserGroupCode.Admin);
-        if (adminsCount > 0)
+        if (adminsCount == 1 && request.UserGroupCode == UserGroupCode.Admin)
         {
             throw new AdminsCountException();
         }    
@@ -33,7 +33,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand,Unit>
         entity.Login = request.Login;
         entity.Password = request.Password;
         entity.UserGroup = _db.UserGroups.FirstOrDefault(group => group.Code == request.UserGroupCode);
-        entity.UserState = _db.UserStates.FirstOrDefault(state => state.Code == request.UserStateCode);
+        //entity.UserState = _db.UserStates.FirstOrDefault(state => state.Code == request.UserStateCode);
         
         await _db.SaveChangesAsync(cancellationToken);
 

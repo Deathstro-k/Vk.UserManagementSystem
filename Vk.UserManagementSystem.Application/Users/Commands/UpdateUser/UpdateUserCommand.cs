@@ -9,6 +9,7 @@ public class UpdateUserCommand:IRequest<Unit>
     public string Login { get; set; }
     public string Password { get; set; }
     public UserGroupCode UserGroupCode { get; set; }
-    public UserStateCode UserStateCode { get; set; }
+
+    //public UserStateCode UserStateCode { get; set; }
    
 }

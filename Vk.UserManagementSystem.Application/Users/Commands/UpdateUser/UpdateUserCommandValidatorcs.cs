@@ -18,8 +18,8 @@ public class UpdateUserCommandValidators : AbstractValidator<UpdateUserCommand>
 
         RuleFor(command => command.UserGroupCode).NotNull()
                                                  .IsInEnum();
-        RuleFor(command => command.UserStateCode).NotNull()
-                                                 .IsInEnum();
+        //RuleFor(command => command.UserStateCode).NotNull()
+        //                                        .IsInEnum();
 
         RuleFor(command => command.UserGroupCode).NotNull()
                                                  .IsInEnum();
