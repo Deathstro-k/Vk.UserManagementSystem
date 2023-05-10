@@ -9,10 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vk.UserManagementSystem.Application\Vk.UserManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\Vk.UserManagementSystem.Persistence\Vk.UserManagementSystem.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
