@@ -11,7 +11,7 @@ public class CreateUserCommandValidator:AbstractValidator<CreateUserCommand>
 		_db = db;	
 		
 		RuleFor(command => command.Login).Matches("^[a-zA-Z0-9]+$")
-			.Must((db,login) => !_db.Users.Any(user=>user.Login==login))
+			//.Must((db,login) => !_db.Users.Any(user=>user.Login==login))
             .MinimumLength(4)
             .MaximumLength(50); ;
 

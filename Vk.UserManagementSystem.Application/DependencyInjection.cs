@@ -12,6 +12,8 @@ public static class DependencyInjection
         this IServiceCollection services) => services
             .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
             .AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() })
-            .AddTransient(typeof(IPipelineBehavior <,>), typeof(ValidatorBehavior <,>));
+            .AddTransient(typeof(IPipelineBehavior <,>), typeof(ValidatorBehavior <,>))
+            .AddMemoryCache();
+    
             
 }
