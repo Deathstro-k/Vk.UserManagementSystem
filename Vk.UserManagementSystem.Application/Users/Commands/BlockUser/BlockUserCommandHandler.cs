@@ -8,10 +8,10 @@ using Vk.UserManagementSystem.Domain.Entities;
 
 namespace Vk.UserManagementSystem.Application.Users.Commands.BlockUser;
 
-public class DeleteUserCommandHandler : IRequestHandler<BlockUserCommand>
+public class BlockUserCommandHandler : IRequestHandler<BlockUserCommand>
 {
     private readonly IUserManagementSystemDbContext _db;
-    public DeleteUserCommandHandler(IUserManagementSystemDbContext db) => _db = db;
+    public BlockUserCommandHandler(IUserManagementSystemDbContext db) => _db = db;
     public async Task Handle(BlockUserCommand request, CancellationToken cancellationToken)
     {
         var entity = await _db.Users.Include(state => state.UserState).FirstOrDefaultAsync(user =>

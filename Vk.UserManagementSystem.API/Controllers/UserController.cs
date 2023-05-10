@@ -8,6 +8,7 @@ using Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
 using Vk.UserManagementSystem.API.Models;
 using Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
 using Vk.UserManagementSystem.Application.Users.Commands.BlockUser;
+using System.Diagnostics;
 
 namespace Vk.UserManagementSystem.API.Controllers;
 public class UserController : BaseController
@@ -50,7 +51,7 @@ public class UserController : BaseController
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Block(Guid id)
     {
         var command = new BlockUserCommand { Id = id };

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Vk.UserManagementSystem.Application.Common.Exceptions;
 using Vk.UserManagementSystem.Application.Interfaces;
-using Vk.UserManagementSystem.Domain.Codes;
 using Vk.UserManagementSystem.Domain.Entities;
 
 namespace Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
