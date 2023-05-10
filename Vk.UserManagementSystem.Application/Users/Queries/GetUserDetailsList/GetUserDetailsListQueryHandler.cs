@@ -7,7 +7,7 @@ using Vk.UserManagementSystem.Application.Users.ViewModels;
 
 namespace Vk.UserManagementSystem.Application.Users.Queries.GetUserDetailsList;
 
-public class GetUserDetailsListQueryHandler : IRequestHandler<GetUserDetailsListQuery, UserDetailsListViewModel>
+public class GetUserDetailsListQueryHandler : IRequestHandler<GetUserPaginationQuery, UserDetailsListViewModel>
 {
     private readonly IUserManagementSystemDbContext _db;
     private readonly IMapper _mapper;
@@ -17,7 +17,7 @@ public class GetUserDetailsListQueryHandler : IRequestHandler<GetUserDetailsList
         _mapper = mapper;
     }
 
-    public async Task<UserDetailsListViewModel> Handle(GetUserDetailsListQuery request,
+    public async Task<UserDetailsListViewModel> Handle(GetUserPaginationQuery request,
         CancellationToken cancellationToken)
     {
         var userDetailsList = await _db.Users

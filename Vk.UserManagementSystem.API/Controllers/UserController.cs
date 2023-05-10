@@ -8,6 +8,7 @@ using Vk.UserManagementSystem.Application.Users.Commands.BlockUser;
 using Vk.UserManagementSystem.Application.Users.Commands.UpdateUser;
 using Vk.UserManagementSystem.Application.Users.Commands.CreateUser;
 using Vk.UserManagementSystem.Application.Users.Queries.GetUserDetails;
+using Vk.UserManagementSystem.Application.Users.Queries.GetUserDetailsPagination;
 
 namespace Vk.UserManagementSystem.API.Controllers;
 public class UserController : BaseController
@@ -19,11 +20,25 @@ public class UserController : BaseController
     [HttpGet]
     public async Task<ActionResult<UserDetailsListViewModel>> GetAll()
     {
-        var query = new GetUserDetailsListQuery();
+        var query = new GetUserPaginationQuery();
     
         var vm = await Mediator.Send(query);
         return Ok(vm);
     }
+
+    [HttpGet("{pageNumber}/{pageSize}")]
+    public async Task<ActionResult<UserDetailsListViewModel>> GetPage(int pageNumber,int pageSize)
+    {
+        var query = new GetUserPageQuery
+        {
+             PageNumber = pageNumber,
+             PageSize = pageSize
+        };
+
+        var vm = await Mediator.Send(query);
+        return Ok(vm);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<UserDetailsViewModel>> Get(Guid id)
     {
@@ -36,16 +51,10 @@ public class UserController : BaseController
     }
     [HttpPost]
     public async Task<ActionResult<Guid>> Create([FromBody] CreateUserDto createUserDto)
-    {
-     
-
-
-
+    { 
         var command = _mapper.Map<CreateUserCommand>(createUserDto);
         var userId = await Mediator.Send(command);
         return Ok(userId);
-
-
     }
 
     [HttpPut]
